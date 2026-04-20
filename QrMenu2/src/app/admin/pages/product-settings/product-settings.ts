@@ -20,7 +20,7 @@ import { CategoryService } from '../../../services/category-service';
   styleUrl: './product-settings.css',
 })
 export class ProductSettings implements OnInit {
- products: Product[] = [];          // Bu componentin kendi cars listesi
+ products: Product[] = [];          // Bu componentin kendi ürünler listesi
 selectedProduct: Product | null = null;
 
 @ViewChild('fileInput') fileInput!: ElementRef;
@@ -61,15 +61,10 @@ productUpdateForm!: FormGroup;        // Reactive form
 
 constructor(private productService: ProductService,private toastrService: ToastrService,private formBuilder: FormBuilder,
   private uploadPhotoService: UploadPhotoService,private categoryService: CategoryService) {}
-categories = [
-  { id: 1, name: 'Burgerler' },
-  { id: 2, name: 'Atıştırmalıklar' },
-  { id: 3, name: 'İçecekler' },
-  { id: 4, name: 'Tatlılar' },
-  { id: 5, name: 'Soslar' }
-];
 
-selectedCategoryId: number | null = null;
+
+selectedCategoryId: number | null = null; // Ürünleri güncellemek için seçilen kategorinin ID'si
+filteredCategoryId: number | null = null; // Dropdown'da seçilen kategorinin ID'si
 
 
 
@@ -107,6 +102,31 @@ loadProducts() { // ürünleri  tabloya bağlama
     });
   }
 
+//  Filtreli  ürünleri getir
+
+getProductsByCategory(categoryId: number) {
+  this.productService.getProductsByCategoryId(categoryId)
+    .subscribe(res => {
+      this.products = res.data;
+    });
+}
+
+
+
+
+
+// Filtre seçim eventi
+onCategoryChange() {
+  if (this.filteredCategoryId == null) {
+    this.loadProducts();
+  } else {
+    this.getProductsByCategory(this.filteredCategoryId);
+  }
+}
+
+
+
+
 
 
   DeleteProduct(product: Product) {
@@ -128,6 +148,7 @@ loadProducts() { // ürünleri  tabloya bağlama
 
   SelectProduct(product: Product) {
      this.selectedProduct = product;
+console.log(this.selectedCategoryId);
 
       this.productUpdateForm.patchValue({
         productId: product.productId,

@@ -48,5 +48,10 @@ export class ProductService {
     return this.http.post<SingleResponseModel<Product>>(`${this.apiUrl}update`, product,{ withCredentials: true });
   }
 
+  getProductsByCategoryId(categoryId: number): Observable<{ data: Product[] }> {
+  return this.http.get<{ data: Product[] }>(
+    `${this.apiUrl}getbycategory?categoryId=${categoryId}`
+  );
+}
 
 }

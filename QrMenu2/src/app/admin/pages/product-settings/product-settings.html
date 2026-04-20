@@ -46,6 +46,29 @@
             </div>
         </div>
 
+
+
+   <!-- SEÇİM -->
+ <select [(ngModel)]="filteredCategoryId" (change)="onCategoryChange()">
+
+  <!-- TÜMÜ -->
+  <option [ngValue]="null">Tümü</option>
+
+  <!-- KATEGORİLER -->
+  <option *ngFor="let cat of allCategories" [ngValue]="cat.categoryId">
+    {{ cat.categoryName }}
+  </option>
+
+</select>
+
+
+
+
+
+
+
+
+
         <!-- Sağda form -->
         <div class="flex-col flex-col-right">
             <div class="card">
