@@ -1,0 +1,55 @@
+<input type="checkbox" id="searchToggle" hidden />
+
+<label for="searchToggle" class="fake-search">
+  <span class="icon">🔍</span>
+  <span>Ürün ara...</span>
+</label>
+
+<label for="searchToggle" class="drawer-backdrop"></label>
+
+<div class="search-drawer">
+  <div class="drawer-header">
+    <h3>Arama</h3>
+    <label for="searchToggle" class="close">✕</label>
+  </div>
+
+  <div class="drawer-search">
+    <span class="icon">🔍</span>
+    <input type="text" [(ngModel)]="searchName" (keyup.enter)="onSearch()" placeholder="Arama Yapın..." />
+  </div>
+
+  <div class="drawer-content">
+    
+    <div *ngIf="searched && noResults" class="no-results">
+      <i *ngIf="searchName === ''" class="fa-solid fa-circle-info fa-2x"></i>
+      <i *ngIf="searchName !== ''" class="fa-solid fa-box-open fa-3x"></i>
+      <span>{{ searchResponseMessage }}</span>
+    </div>
+
+    <div *ngFor="let group of groupedProducts | keyvalue" class="category-section">
+      
+      <div class="category-divider">
+        <span>{{ group.key }}</span>
+        <span class="badge">{{ group.value.length }}</span>
+      </div>
+
+      <div class="product-card" *ngFor="let product of group.value">
+        <div class="product-info">
+          <h3 class="product-title">{{ product.productName }}</h3>
+          <p class="product-description">{{ product.description }}</p>
+          <span class="product-price">₺{{ product.price }}</span>
+        </div>
+        <div class="product-image-wrapper">
+          <img [src]="'https://localhost:44311/uploads/products/' + product.image" [alt]="product.productName">
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="drawer-footer">
+    <button class="primary" (click)="onSearch()">Ara</button>
+    <button class="outline" (click)="searchName = ''; groupedProducts = {}">Temizle</button>
+  </div>
+</div>

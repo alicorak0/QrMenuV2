@@ -1,0 +1,11 @@
+QrMenu2/node_modules/
+QrMenu2/.angular/
+QrMenu2/dist/
+QrMenu2/coverage/
+QrMenu2/.cache/
+QrMenu2/.sass-cache/
+QrMenu2/tmp/
+QrMenu2/temp/
+*.log
+Thumbs.db
+.DS_Store

@@ -1,0 +1,63 @@
+<header class="header">
+  <div class="container">
+
+    <div class="logo">
+      <img routerLink="/" src="/Quattro-logo.png" alt="">
+    </div>
+
+
+    <div class="menu-right">
+      <div class="menu-text">
+        <a routerLink="/menu">MENU</a>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+
+
+
+<div class="popular-slider">
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let product of products">
+        <div class="product-card">
+
+          <!-- Image -->
+          <img 
+      [src]="'https://localhost:44311/uploads/products/' + product.image"
+          alt="{{ product.productName }}" [alt]="product.productName"
+            class="product-img">
+
+          <div class="product-info">
+            <!-- Product Name -->
+            <h4>{{ product.productName }}</h4>
+
+            <!-- Description -->
+            <p class="description">
+              {{ product.description }}
+            </p>
+
+            <!-- Tooltip (isteğe bağlı)
+      <span class="tooltip">
+        {{ product.tooltip }}
+      </span> -->
+
+            <!-- Price -->
+            <span class="price">₺{{ product.price }}</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- 👇 ALT İÇERİK BURAYA GELECEK -->
+<div class="page-content">
+  <router-outlet></router-outlet>
+</div>

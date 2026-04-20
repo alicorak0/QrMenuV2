@@ -1,0 +1,40 @@
+
+@import '../node_modules/ngx-toastr/toastr.css';
+
+
+
+:root {
+  --white-color: #fff;
+  --black-color: #000;
+  --body-font: "Poppins", sans-serif;
+  --body-font: 'Poppins', sans-serif;
+  --h1-font-size: 1.75rem;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.813rem;
+  --font-medium: 11700;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    /* Arka planı tamamen şeffaf yapar (arkadaki yeşili gösterir) */
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    box-shadow: 0 0 0px 1000px transparent inset !important;
+    
+    /* Yazı rengini sabitler */
+    -webkit-text-fill-color: white !important;
+    
+    /* Tarayıcının varsayılan arka plan değişimini durdurur */
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Chrome'un focus olduğunda eklediği ekstra katmanı temizlemek için */
+input:focus {
+    background-color: transparent !important;
+}
+

@@ -1,0 +1,58 @@
+<main>
+    <header class="header">
+        <div class="header-left">
+            <img [src]="'https://localhost:44311/uploads/products/Quattro-logo.png'" alt="QR Menu Logo">
+        </div>
+
+
+        <div class="header-right">
+            <button class="menu-toggle" aria-label="Toggle menu" (click)="toggleSidebar()">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="user-div">
+                <i class="fa-solid fa-user"></i>
+                <span class="user-id">  {{ currentUser?.fullName || 'Yükleniyor...' }}</span>
+            </div>
+
+            <div class="log-out" (click)="logout()">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </div>
+
+        </div>
+
+    </header>
+
+    <aside class="sidebar" [class.open]="isSidebarOpen" (mouseenter)="openSidebar()" (mouseleave)="closeSidebar()">
+        <div class="menu-title">MENÜ</div>
+
+        <ul class="menu-list">
+            <li [routerLink]="['category-add']" (click)="closeSidebar()">               
+                <i class="fa-solid fa-wifi"></i>
+                <span *ngIf="isSidebarOpen">Kategori Ekleme</span>
+            </li>
+
+            <li [routerLink]="['category-settings']" (click)="closeSidebar()">
+                <i class="fa-solid fa-wifi"></i>
+                <span *ngIf="isSidebarOpen">Kategori Düzenleme</span>
+            </li>
+
+            <li [routerLink]="['product-add']" (click)="closeSidebar()">
+                <i class="fa-solid fa-wifi"></i>
+                <span *ngIf="isSidebarOpen">Ürün Ekleme</span>          
+            </li>
+
+            <li [routerLink]="['product-settings']" (click)="closeSidebar()">
+                <i class="fa-solid fa-wifi"></i>
+                <span *ngIf="isSidebarOpen">Ürün Düzenleme</span>
+            </li>
+
+          
+        </ul>
+    </aside>
+
+        <section class="content">
+            <router-outlet></router-outlet>
+        </section>
+
+</main>

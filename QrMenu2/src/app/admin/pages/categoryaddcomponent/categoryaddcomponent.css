@@ -1,0 +1,35 @@
+.file-name {
+  margin-left: 10px;
+  display: inline-block;
+  max-width: calc(100% - 140px);
+  word-break: break-word;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: white !important;
+}
+
+.card {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.form-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .form-btn-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-btn-group .btn {
+    width: 100%;
+  }
+}

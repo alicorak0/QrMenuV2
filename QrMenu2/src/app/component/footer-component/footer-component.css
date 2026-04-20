@@ -1,0 +1,140 @@
+.footer {
+    background: #111;
+    color: #eaeaea;
+    padding: 60px 28px 40px 28px;
+    font-family: "Josefin Sans", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 180px;
+    margin-bottom: 50px;
+}
+
+
+
+.footer h2 {
+    color: #c8a46b;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+.footer h3 {
+    color: #c8a46b;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+}
+
+.footer h4 {
+    color: #fff;
+    letter-spacing: 1px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.footer p {
+    color: #bdbdbd;
+    line-height: 1.8;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.footer-bottom {
+    max-width: 1200px;
+    padding: 18px 40px 0px 40px;
+    color: #8c8c8c;
+    font-size: 14px;
+    text-align: center;
+}
+
+.social {
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-media-icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.social-media-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0px;
+}
+
+.social-media-icon i {
+    font-size: 25px;
+    color:
+    #c8a46b;
+}
+
+.social-media-icon i:hover{
+    color: #fff;
+}
+
+.footer-col p,
+.footer-col h2,
+.footer-col h3,
+.footer-col h4 {
+    margin: 12px;
+}
+
+.footer-col p {
+    margin-bottom: 6px;
+    /* Satırlar arası boşluk */
+    line-height: 1.4;
+    /* Daha sık satır aralığı */
+}
+
+@media(max-width:600px) {
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 50px;
+        margin-bottom: 20px;
+    }
+
+    .footer-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+
+    .footer-col h4 {
+        display: none;
+    }
+
+    .social {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .social h2 {
+        display: none;
+    }
+
+    .footer-col p,
+    .footer-col h2,
+    .footer-col h3,
+    .footer-col h4 {
+        margin: 6px;
+    }
+}

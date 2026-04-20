@@ -1,0 +1,114 @@
+<div class="container mt-4">
+    <h2 class="content-title">Product Management</h2>
+
+    <div class="flex-row">
+        <!-- Solda tablo -->
+        <div class="flex-col flex-col-left">
+            <div class="card">
+                <div class="card-header bg-primary text-white">Ürünler</div>
+                <div class="card-body p-0">
+                    <div class="table-wrapper">
+                        <table class="table table-striped mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>İd</th>
+                                    <th>Category</th>
+                                    <th>ProductName</th>
+                                    <th>Description</th>
+                                    <th>Tooltip</th>
+                                    <th>Price</th>
+                                    <th>Image</th>
+                                    <th>Favori</th>
+                                    <th>İşlem</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let product of products">
+                                    <td>{{product.productId}}</td>
+                                    <td>{{product.categoryId}}</td>
+                                    <td>{{product.productName}}</td>
+                                    <td class="layout-cell">{{product.description}}</td>
+                                    <td class="layout-cell">{{product.tooltip}}</td>
+                                    <td>{{product.price}}</td>
+                                    <td class="layout-cell">{{product.image}}</td>
+                                    <td class="layout-cell">{{product.isFeatured}}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-warning me-1"
+                                            (click)="SelectProduct(product)">Güncelle</button>
+                                        <button class="btn btn-sm btn-danger"
+                                            (click)="DeleteProduct(product)">Sil</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sağda form -->
+        <div class="flex-col flex-col-right">
+            <div class="card">
+                <div class="card-header bg-success text-white">Seçilen Ürünü Güncelle</div>
+                <div class="card-body">
+                    <form [formGroup]="productUpdateForm">
+                        <div class="mb-3">
+                            <label class="form-label">ID</label>
+                            <input type="number" class="form-control" readonly formControlName="productId" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" formControlName="productName" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <select class="form-control" [(ngModel)]="selectedCategoryId" name="category"
+                                formControlName="categoryId">
+                                <option [ngValue]="null" value="0" disabled>Seçiniz</option>
+                                <option *ngFor="let cat of allCategories" [ngValue]="cat.categoryId">{{cat.categoryName}}</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <input type="text" class="form-control" formControlName="description" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tooltip</label>
+                            <input type="text" class="form-control" formControlName="tooltip" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Favori Ürün</label>
+                            <select class="form-control"  
+                                formControlName="isFeatured">
+                                                                <option [ngValue]="null" value="0" disabled>Seçiniz</option>
+
+                                <option [ngValue]="false">Hayır</option>
+                                <option [ngValue]="true">Evet</option>
+                            </select>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label">Price</label>
+                            <input type="number" class="form-control" formControlName="price" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">İmage</label>
+                            <input type="file" class="form-control" #fileInput (change)="onFileSelected($event)">
+                            <div class="mt-2">
+                                <!-- Küçük preview, 60x60px -->
+                                <img *ngIf="previewUrl" [src]="previewUrl" alt="Preview" width="60" height="60"
+                                    style="object-fit: cover; border: 1px solid #ccc; border-radius: 4px;">
+                            </div>
+                        </div>
+
+
+                        <button type="button" class="btn btn-success me-2" (click)="updateProduct()">Kaydet</button>
+                        <button type="button" class="btn btn-secondary" (click)="cancelSelect()">Vazgeç</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

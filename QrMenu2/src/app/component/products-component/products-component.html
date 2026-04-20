@@ -1,0 +1,57 @@
+<div class="menu-wrapper">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul>
+<li *ngFor="let cat of allCategories">
+    <button 
+      [routerLink]="['/menu/products', slugify(cat.categoryName)]"
+      class="sidebar-btn" 
+      [class.active]="activeKey === slugify(cat.categoryName)">
+      {{ cat.categoryName }}
+    </button>
+  </li>
+    </ul>
+  </aside>
+
+
+
+
+  <!-- Main wrapper: Search + Content -->
+  <div class="menu-main">
+    <!-- Search Component -->
+    <app-product-search-component></app-product-search-component>
+
+    <nav class="mobile-category-swiper" aria-label="Mobil kategori listesi">
+      <a
+        *ngFor="let cat of allCategories"
+        [routerLink]="['/menu/products', slugify(cat.categoryName)]"
+        class="mobile-category-chip"
+        [class.active]="activeKey === slugify(cat.categoryName)">
+        {{ cat.categoryName }}
+      </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="menu-content">
+      <div class="category-title">
+        <h2>{{ currentTitle }}</h2>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card" *ngFor="let product of products">
+          <img [src]="'https://localhost:44311/uploads/products/' + product.image" alt="{{ product.image }}" loading="lazy">
+          <h3 class="product-title">{{ product.productName }}</h3>
+          <p class="product-description">{{ product.description }}</p>
+          <div class="product-footer">
+            <span class="product-price">₺{{ product.price }}</span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+
+
+
+  
+</div>

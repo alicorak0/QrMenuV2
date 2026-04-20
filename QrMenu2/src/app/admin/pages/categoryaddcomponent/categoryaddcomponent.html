@@ -1,0 +1,19 @@
+<!-- Sağda veya üstte ekleme formu -->
+<div class="card mb-3">
+  <div class="card-header bg-success text-white">
+    Yeni Kategori Ekle
+  </div>
+  <div class="card-body">
+    <form [formGroup]="categoryAddForm">
+      <div class="mb-3">
+        <label class="form-label">Kategori Adı</label>
+        <input type="text" class="form-control" formControlName="categoryName" placeholder="Kategori adı girin" />
+      </div>
+
+      <div class="form-btn-group">
+        <button type="button" class="btn btn-success me-2" (click)="addCategory()">Kaydet</button>
+        <button type="button" class="btn btn-secondary" (click)="categoryAddForm.reset()">Temizle</button>
+      </div>
+    </form>
+  </div>
+</div>

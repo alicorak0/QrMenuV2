@@ -1,0 +1,94 @@
+.flex-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.flex-col-left {
+  flex: 1.7;
+  min-width: 320px;
+}
+
+.flex-col-right {
+  flex: 1.3;
+  min-width: 320px;
+}
+
+/* tablo scroll için */
+.table-wrapper {
+  max-height: 670px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.layout-cell {
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.content-title {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.container {
+  padding-bottom: 55px;
+}
+
+.table td:last-child {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.table td:last-child button {
+  min-width: 100px;
+}
+
+.flex-col-right .card {
+  height: auto;
+}
+
+.form-btn-group {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+@media screen and (max-width: 992px) {
+  .flex-col-left,
+  .flex-col-right {
+    min-width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .flex-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .content-title {
+    font-size: 1.35rem;
+  }
+
+  .table thead th,
+  .table tbody td {
+    font-size: 0.95rem;
+  }
+
+  .btn-sm {
+    width: 100%;
+    max-width: 220px;
+  }
+
+  .form-btn-group {
+    justify-content: stretch;
+  }
+}

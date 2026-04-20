@@ -1,0 +1,248 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY / MAIN */
+main {
+  min-height: 100vh;
+  background: linear-gradient(to right, #c8a46b, #c8a46b);
+  font-family: "Montserrat", sans-serif;
+  position: relative;
+}
+
+/* HEADER */
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 60px;
+  height: 150px;
+  z-index: 10;
+  position: relative;
+}
+
+.header-left img {
+  height: 120px;
+}
+
+.header-right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.95);
+  color: #c8a46b;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.user-div, .log-out {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  gap: 3px;
+}
+
+.header-right i {
+  font-size: 14px;
+}
+
+/* SIDEBAR OVERLAY */
+.sidebar {
+  width: 80px;
+  height: calc(100vh - 150px); /* header altına */
+  background-color: #f4f7fb;
+  padding: 20px 10px;
+  border-radius: 20px;
+  position: absolute;  /* FIXED yaparak overlay */
+  top: 150px;       /* header altı */
+  left: 0;
+  z-index: 20;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+.sidebar.open {
+  width: 300px;
+}
+
+/* MENU */
+.menu-title {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.menu-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu-list li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.menu-list li:hover {
+  background-color: #c8a46b;
+  color: #fff;
+}
+
+.menu-list i {
+  font-size: 18px;
+}
+
+/* CONTENT ALANI */
+.content {
+  margin: 0;
+  padding: 25px 40px;
+  border-radius: 20px;
+  min-height: calc(100vh - 150px);
+  overflow-x: auto;
+  position: relative;
+  z-index: 1; /* sidebar üstte kalacak */
+}
+
+/* CARD & TABLO */
+.card {
+  background: #fff;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+@media screen and (max-width: 1200px) {
+  .header {
+    padding: 18px 28px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .header {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    padding: 18px 20px;
+  }
+
+  .header-right {
+    width: auto;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 240px;
+    height: 100vh;
+    border-radius: 0 0 0 0;
+    padding: 20px 16px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 50;
+    background-color: #f4f7fb;
+    box-shadow: 4px 0 18px rgba(0, 0, 0, 0.12);
+    transition: left 0.28s ease;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .menu-title {
+    display: block;
+    text-align: left;
+  }
+
+  .menu-list {
+    gap: 10px;
+  }
+
+  .menu-list li {
+    justify-content: flex-start;
+    padding: 12px 14px;
+    min-width: 0;
+  }
+
+  .menu-list li span {
+    display: inline-block;
+  }
+
+  .content {
+    padding: 18px 16px;
+    min-height: auto;
+    margin-left: 0;
+  }
+
+  .menu-list li i {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 14px 14px;
+  }
+
+  .header-left img {
+    max-width: 120px;
+  }
+
+  .content {
+    padding: 16px 12px;
+    margin-left: 0;
+  }
+}
+
+.card-header {
+  padding: 12px 20px;
+  font-weight: 700;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.card-body {
+  padding: 15px 20px;
+}
+
+table {
+  width: 100%;
+  table-layout: auto;
+}
