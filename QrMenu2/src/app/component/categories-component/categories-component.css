@@ -1,139 +1,3 @@
-
-
-.header {
-  padding: 5px 0px;
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 10;
-  color: white;
-  background: #000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.menu-right {
-  display: flex;
-  align-items: center;
-}
-
-.menu-right a {
-  text-decoration: none;
-  color: white;
-  font-weight: 400;
-  transition: 0.3s;
-  font-size: 20px;
-}
-
-.menu-right a:hover {
-  color: #c8a46b;
-}
-
-.menu-text {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-}
-
-.logo img {
-  width: 100px;
-  height: auto;
-  transition: 0.3s ease;
-}
-
-.logo img:hover {
-  cursor: pointer;
-}
- /* Popular slder alanı */
-
-.popular-slider {
-  width: 100%;
-  overflow-x: scroll;
-  padding: 20px 0;
-  background: #f9f9f9;
-  -ms-overflow-style: none;
-  /* IE / Edge scrollbar gizle */
-  scrollbar-width: none;
-  /* Firefox scrollbar gizle */
-}
-
-.popular-slider::-webkit-scrollbar {
-  display: none;
-  /* Chrome + Safari scrollbar gizle */
-}
-
-.swiper {
-  display: flex;
-  flex-direction: column;
-}
-
-.swiper-wrapper {
-  display: flex;
-  flex-direction: row;
-  gap: 0px;
-  padding: 0 20px;
-}
-
-
-.swiper-slide {
-  flex: 0 0 auto;
-  /* Kart sabit genişlik */
-}
-
-.product-card {
-  width: 440px;
-  height: 220px;
-  display: flex;
-  background: #fff;
-  border-radius: 10px;
-  padding: 10px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-}
-
-.product-img {
-  height: 200px;
-  width: 300px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-right: 12px;
-}
-
-.product-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.product-info h4 {
-  margin-top: 15px;
-  font-size: 22px;
-}
-
-.product-info .description {
-  margin-top: 0px;
-  font-size: 11px;
-  color: #555;
-}
-
-.product-info .price {
-  margin-top: 5px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #e60000;
-}
-
-
-
-
 /* Ortadaki container */
 .categories-container {
   font-family: "Montserrat", sans-serif;
@@ -160,77 +24,66 @@
   position: relative;
   width: 95%;
   overflow: hidden;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 80px;
-  border: 2px solid #111;
+  border: 2px solid #000000;
   border-radius: 8px;
-  background-color: #fff;
-  padding: 0;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: #ffffff;
+}
+
+.category-card:hover {
+  background-color: #000000;
+}
+
+.category-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
 }
 
 .category-card h3 {
+  position: absolute;
   margin: 0;
   font-weight: 700;
   font-size: 25px;
   color: #c8a46b;
   text-align: center;
+  z-index: 999;
   letter-spacing: 0.8px;
-  line-height: 1.1;
-  overflow-wrap: anywhere;
-}
-
-.category-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* Tablet (600px - 900px) → 2 sütun */
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .categories-grid {
-    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     margin-top: 40px;
   }
 
   .category-card h3 {
+    margin: 0;
     font-weight: 700;
     font-size: 22px;
+    color: #000000;
+    text-align: center;
   }
 }
+
+
 
 /* Mobil (<600px) → 1 sütun */
-@media (max-width: 768px) {
-  .categories-container {
-    padding: 26px 22px 20px;
-  }
-
-  .categories-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    margin-top: 6px;
-  }
+@media (max-width: 600px) {
 
   .category-card {
-    min-height: 86px;
-    border: 2px solid #111;
-    border-radius: 16px;
-    background-color: #fff;
-    padding: 14px 18px;
-  }
-
-  .category-card h3 {
-    font-size: 22px;
-    line-height: 1.16;
-  }
-}
-
-@media (max-width: 600px) {
-  .categories-container {
-    padding: 22px 30px 18px;
+    height: 50px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    background-color: #ffffff;
   }
 
   .categories-grid {
@@ -239,15 +92,11 @@
     margin-top: 40px;
   }
 
-  .category-card {
-    min-height: 50px;
-    border-radius: 8px;
-    padding: 0px 16px;
-  }
-
   .category-card h3 {
+    margin: 0;
     font-weight: 650;
     font-size: 20px;
-    line-height: 1.18;
+    color: #c8a46b;
+    text-align: center;
   }
 }

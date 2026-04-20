@@ -1,5 +1,3 @@
-@import 'remixicon/fonts/remixicon.css';
-
 :root {
   --white-color: #fff;
   --black-color: #000;
@@ -10,6 +8,8 @@
   --small-font-size: 0.813rem;
   --font-medium: 11700;
 }
+
+@import '~remixicon/fonts/remixicon.css';
 
 /*=============== BASE ===============*/
  * {
@@ -194,7 +194,3 @@
 }
  
 /* Config */
-
-
-
-

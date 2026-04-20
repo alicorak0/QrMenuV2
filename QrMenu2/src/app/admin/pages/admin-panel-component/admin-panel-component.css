@@ -7,7 +7,7 @@
 /* BODY / MAIN */
 main {
   min-height: 100vh;
-  background: linear-gradient(to right, #c8a46b, #c8a46b);
+  background: linear-gradient(to right, #012509, #10592b);
   font-family: "Montserrat", sans-serif;
   position: relative;
 }
@@ -45,7 +45,7 @@ main {
   border-radius: 12px;
   border: 1px solid rgba(0,0,0,0.08);
   background: rgba(255,255,255,0.95);
-  color: #c8a46b;
+  color: #012509;
   cursor: pointer;
   font-size: 1rem;
 }
@@ -110,7 +110,7 @@ main {
 }
 
 .menu-list li:hover {
-  background-color: #c8a46b;
+  background-color: #7be195;
   color: #fff;
 }
 

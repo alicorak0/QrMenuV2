@@ -21,15 +21,7 @@
     <!-- Search Component -->
     <app-product-search-component></app-product-search-component>
 
-    <nav class="mobile-category-swiper" aria-label="Mobil kategori listesi">
-      <a
-        *ngFor="let cat of allCategories"
-        [routerLink]="['/menu/products', slugify(cat.categoryName)]"
-        class="mobile-category-chip"
-        [class.active]="activeKey === slugify(cat.categoryName)">
-        {{ cat.categoryName }}
-      </a>
-    </nav>
+
 
     <!-- Main Content -->
     <main class="menu-content">
