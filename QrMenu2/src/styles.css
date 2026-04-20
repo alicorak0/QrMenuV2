@@ -1,6 +1,20 @@
 
+@import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import '../node_modules/ngx-toastr/toastr.css';
+
+html,
+body {
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+app-root,
+app-main-layout-component,
+app-header-component,
+app-footer-component {
+    display: block;
+}
 
 
 
