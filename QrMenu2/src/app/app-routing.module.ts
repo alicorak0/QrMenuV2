@@ -14,6 +14,7 @@ import { CategorySettingsComponent } from "./admin/pages/category-settings-compo
 import { Categoryaddcomponent } from "./admin/pages/categoryaddcomponent/categoryaddcomponent";
 import { MainMenuComponent } from "./component/mainmenu-component/mainmenu-component";
 import { MenuComponent } from "./component/menu-component/menu-component";
+import { ContactComponent } from "./component/contact-component/contact-component";
 const routes: Routes = [
   {
     path: '',
@@ -29,7 +30,13 @@ const routes: Routes = [
           { path: '', component: CategoriesComponent },
           { path: 'products/:name', component: ProductsComponent }
         ]
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
       }
+
+
     ]
   },
   { path: 'login', component: LoginComponent },

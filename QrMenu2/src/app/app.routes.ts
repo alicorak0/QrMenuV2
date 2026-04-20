@@ -12,6 +12,7 @@ import { ProductSearchComponent } from './component/product-search-component/pro
 import { ProductsComponent } from './component/products-component/products-component';
 import { adminGuardsGuard } from './guards/admin-guards-guard';
 import { MainLayoutComponent } from './layout/main-layout-component/main-layout-component';
+import { ContactComponent } from './component/contact-component/contact-component';
 
 export const routes: Routes = [
 	{
@@ -27,6 +28,11 @@ export const routes: Routes = [
 					{ path: 'products/:name', component: ProductsComponent },
 				],
 			},
+            {
+				path: 'contact',
+				component: ContactComponent
+			}
+
 		],
 	},
 	{ path: 'login', component: LoginComponent },

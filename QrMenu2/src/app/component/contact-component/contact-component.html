@@ -1,0 +1,37 @@
+<header class="header">
+    <div class="container">
+
+        <div class="logo">
+            <img routerLink="/" src="/Quattro-logo.png" alt="">
+        </div>
+
+
+        <!-- HAMBURGER MENU ICON -->
+        <div class="hamburger" (click)="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        
+        <nav class="nav" [class.open]="isMenuOpen">
+            <div class="nav-item-container">
+                <a routerLink="/" (click)="closeMenu()">ANA SAYFA</a>
+                <a routerLink="/menu" (click)="closeMenu()">MENU</a>
+                <a routerLink="/blog" (click)="closeMenu()">BLOG</a>
+                <a routerLink="/contact" (click)="closeMenu()">İLETİŞİM</a>
+            </div>
+        </nav>
+        
+    </div>
+
+</header>
+
+<div class="contact-container">
+   
+ <div class="map-wrapper">
+  <iframe [src]="googleMapUrl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+  </iframe>
+</div>
+
+</div>
