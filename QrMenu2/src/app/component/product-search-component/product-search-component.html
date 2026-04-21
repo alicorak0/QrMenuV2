@@ -1,21 +1,33 @@
 <input type="checkbox" id="searchToggle" hidden />
 
 <label for="searchToggle" class="fake-search">
-  <span class="icon">🔍</span>
-  <span>Ürün ara...</span>
+  <span class="icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" focusable="false">
+      <circle cx="11" cy="11" r="6.5"></circle>
+      <path d="M16 16L21 21"></path>
+    </svg>
+  </span>
+  <span class="search-copy">
+    <strong>Ürün Arama</strong>
+  </span>
 </label>
 
 <label for="searchToggle" class="drawer-backdrop"></label>
 
 <div class="search-drawer">
   <div class="drawer-header">
-    <h3>Arama</h3>
+    <h3>Urun Arama</h3>
     <label for="searchToggle" class="close">✕</label>
   </div>
 
   <div class="drawer-search">
-    <span class="icon">🔍</span>
-    <input type="text" [(ngModel)]="searchName" (keyup.enter)="onSearch()" placeholder="Arama Yapın..." />
+    <span class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" focusable="false">
+        <circle cx="11" cy="11" r="6.5"></circle>
+        <path d="M16 16L21 21"></path>
+      </svg>
+    </span>
+    <input type="text" [(ngModel)]="searchName" (keyup.enter)="onSearch()" placeholder="Menu icinde ara..." />
   </div>
 
   <div class="drawer-content">
