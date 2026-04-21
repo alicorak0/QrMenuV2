@@ -1,27 +1,150 @@
-.file-name {
-  margin-left: 10px;
+.admin-page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.admin-page-title {
+  margin: 0 0 8px;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  color: #2f2a24;
+}
+
+.admin-page-subtitle {
+  margin: 0;
+  color: #7f7769;
+  line-height: 1.6;
+}
+
+.admin-panel {
+  width: 100%;
+  max-width: 900px;
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid rgba(200, 164, 107, 0.14);
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.05);
+}
+
+.panel-head {
+  margin-bottom: 24px;
+}
+
+.panel-kicker {
   display: inline-block;
-  max-width: calc(100% - 140px);
+  margin-bottom: 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #c8a46b;
+}
+
+.panel-head h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #2f2a24;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field-group-full {
+  grid-column: 1 / -1;
+}
+
+.field-group label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #4e473e;
+}
+
+.form-control {
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 16px;
+  border: 1px solid rgba(200, 164, 107, 0.2);
+  border-radius: 14px;
+  background: #f8f5ef;
+  color: #2f2a24;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #c8a46b;
+  box-shadow: 0 0 0 4px rgba(200, 164, 107, 0.14);
+}
+
+.file-picker-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.file-name {
+  color: #6b6357;
   word-break: break-word;
 }
 
-input:-webkit-autofill {
-  -webkit-text-fill-color: white !important;
+.form-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
 }
 
-.container .card {
-  width: 100%;
-  max-width: 760px;
-  margin: 0 auto;
+.btn {
+  min-width: 140px;
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #c8a46b;
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background: #f4efe6;
+  color: #5f5649;
+  border-color: rgba(200, 164, 107, 0.16);
 }
 
 @media screen and (max-width: 768px) {
-  .container .card {
-    margin: 0 12px;
+  .admin-panel {
+    padding: 22px 18px;
+    border-radius: 20px;
+  }
+
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-btn-group {
+    flex-direction: column;
   }
 
   .btn {
     width: 100%;
-    margin-bottom: 10px;
   }
 }

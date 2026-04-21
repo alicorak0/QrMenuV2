@@ -1,58 +1,58 @@
-<main>
-    <header class="header">
+<main class="admin-shell">
+    <header class="admin-header">
         <div class="header-left">
-            <img [src]="'https://localhost:44311/uploads/products/Quattro-logo.png'" alt="QR Menu Logo">
+            <img [src]="'https://localhost:44311/uploads/products/Quattro-logo.png'" alt="Quattro logo">
+            <div class="brand-copy">
+                <span class="brand-title">Quattro Admin</span>
+                <span class="brand-subtitle">Menü yönetim paneli</span>
+            </div>
         </div>
-
 
         <div class="header-right">
             <button class="menu-toggle" aria-label="Toggle menu" (click)="toggleSidebar()">
-              <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars"></i>
             </button>
 
             <div class="user-div">
                 <i class="fa-solid fa-user"></i>
-                <span class="user-id">  {{ currentUser?.fullName || 'Yükleniyor...' }}</span>
+                <span class="user-id">{{ currentUser?.fullName || 'Yükleniyor...' }}</span>
             </div>
 
-            <div class="log-out" (click)="logout()">
+            <button type="button" class="log-out" (click)="logout()" aria-label="Çıkış yap">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
-            </div>
-
+            </button>
         </div>
-
     </header>
 
-    <aside class="sidebar" [class.open]="isSidebarOpen" (mouseenter)="openSidebar()" (mouseleave)="closeSidebar()">
-        <div class="menu-title">MENÜ</div>
+    <div class="admin-body">
+        <aside class="sidebar" [class.open]="isSidebarOpen" (mouseenter)="openSidebar()" (mouseleave)="closeSidebar()">
+            <div class="menu-title" *ngIf="isSidebarOpen">Yönetim</div>
 
-        <ul class="menu-list">
-            <li [routerLink]="['category-add']" (click)="closeSidebar()">               
-                <i class="fa-solid fa-wifi"></i>
-                <span *ngIf="isSidebarOpen">Kategori Ekleme</span>
-            </li>
+            <ul class="menu-list">
+                <li routerLinkActive="active" [routerLink]="['category-add']" (click)="closeSidebar()">
+                    <i class="fa-solid fa-folder-plus"></i>
+                    <span *ngIf="isSidebarOpen">Kategori Ekle</span>
+                </li>
 
-            <li [routerLink]="['category-settings']" (click)="closeSidebar()">
-                <i class="fa-solid fa-wifi"></i>
-                <span *ngIf="isSidebarOpen">Kategori Düzenleme</span>
-            </li>
+                <li routerLinkActive="active" [routerLink]="['category-settings']" (click)="closeSidebar()">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span *ngIf="isSidebarOpen">Kategori Düzenle</span>
+                </li>
 
-            <li [routerLink]="['product-add']" (click)="closeSidebar()">
-                <i class="fa-solid fa-wifi"></i>
-                <span *ngIf="isSidebarOpen">Ürün Ekleme</span>          
-            </li>
+                <li routerLinkActive="active" [routerLink]="['product-add']" (click)="closeSidebar()">
+                    <i class="fa-solid fa-bowl-food"></i>
+                    <span *ngIf="isSidebarOpen">Ürün Ekle</span>
+                </li>
 
-            <li [routerLink]="['product-settings']" (click)="closeSidebar()">
-                <i class="fa-solid fa-wifi"></i>
-                <span *ngIf="isSidebarOpen">Ürün Düzenleme</span>
-            </li>
-
-          
-        </ul>
-    </aside>
+                <li routerLinkActive="active" [routerLink]="['product-settings']" (click)="closeSidebar()">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span *ngIf="isSidebarOpen">Ürün Düzenle</span>
+                </li>
+            </ul>
+        </aside>
 
         <section class="content">
             <router-outlet></router-outlet>
         </section>
-
+    </div>
 </main>

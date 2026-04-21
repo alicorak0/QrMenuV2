@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 // import { UploadPhotoService } from '../../../services/upload-photo-service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AuthService } from '../../../services/auth-service';
 import { Router } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
@@ -18,12 +18,27 @@ export class AdminPanelComponent implements OnInit {
 
 
   isSidebarOpen = false;
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: object,
+  ) {}
 
    currentUser : any;
 
   ngOnInit(): void {
-    this.currentUser  = this.authService['currentUserSubject'].value;
+    this.currentUser = this.authService.currentUserValue;
+
+    if (isPlatformBrowser(this.platformId) && !this.currentUser) {
+      this.authService.me().subscribe({
+        next: (user) => {
+          this.currentUser = user;
+        },
+        error: () => {
+          this.router.navigate(['/login']);
+        },
+      });
+    }
 
   }
 

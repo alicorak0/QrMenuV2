@@ -1,61 +1,63 @@
-<div class="container mt-4">
-    <div class="row">
-        <!-- Sağda form: Seçilen araç için update -->
-        <div class="col-md-6 offset-md-2">
-            <div class="card">
-                <div class="card-header bg-success text-white">
-                    Araç Ekleme
+<div class="admin-page">
+    <div class="admin-page-header">
+        <div>
+            <h2 class="admin-page-title">Yeni Ürün</h2>
+            <p class="admin-page-subtitle">Menüye eklenecek ürün bilgilerini, kategorisini ve görselini yönetin.</p>
+        </div>
+    </div>
+
+    <section class="admin-panel admin-form-panel">
+        <div class="panel-head">
+            <span class="panel-kicker">Ürün Ekle</span>
+            <h3>Ürün bilgileri</h3>
+        </div>
+
+        <form [formGroup]="productAddForm" class="admin-form">
+            <div class="admin-form-grid">
+                <div class="field-group">
+                    <label for="categorySelect">Kategori</label>
+                    <select id="categorySelect" name="category" class="form-control" formControlName="categoryId">
+                        <option [ngValue]="null">Seçiniz</option>
+                        <option *ngFor="let cat of allCategories" [ngValue]="cat.categoryId">
+                            {{ cat.categoryName }}
+                        </option>
+                    </select>
                 </div>
-                <div class="card-body">
-                    <form [formGroup]="productAddForm">
 
-                        <div class="mb-3">
-                            <label class="form-label">Category</label>
-                            <select name="category" class="form-control" formControlName="categoryId">
-                                <option [ngValue]="null">Seçiniz</option>
-                                <option *ngFor="let cat of allCategories" [ngValue]="cat.categoryId">
-                                    {{ cat.categoryName }}
-                                </option>
-                            </select>
-                        </div>
+                <div class="field-group">
+                    <label for="productName">Ürün adı</label>
+                    <input id="productName" type="text" name="productName" class="form-control" formControlName="productName" />
+                </div>
 
+                <div class="field-group field-group-full">
+                    <label for="description">Açıklama</label>
+                    <input id="description" type="text" name="description" class="form-control" formControlName="description" />
+                </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Name</label>
-                            <input type="text" name="productName" class="form-control" formControlName="productName" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Description</label>
-                            <input type="text" name="description" class="form-control" formControlName="description" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Tooltip</label>
-                            <input type="text" name="tooltip" class="form-control" formControlName="tooltip" />
-                        </div>
+                <div class="field-group field-group-full">
+                    <label for="tooltip">Kısa bilgi</label>
+                    <input id="tooltip" type="text" name="tooltip" class="form-control" formControlName="tooltip" />
+                </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Price</label>
-                            <input type="number" name="price" class="form-control" formControlName="price" />
-                        </div>
+                <div class="field-group">
+                    <label for="price">Fiyat</label>
+                    <input id="price" type="number" name="price" class="form-control" formControlName="price" />
+                </div>
 
-                        <!-- ✅ IMAGE SEÇME (gizli input, preview yok) -->
-                        <div class="mb-3">
-                            <label class="form-label">Resim</label><br>
-                            <button type="button" class="btn btn-secondary" (click)="fileInput.click()">
-                                📷 Resim Seç
-                            </button>
-                            <span class="file-name" *ngIf="selectedFile">{{ selectedFile.name }}</span>
-                            <!-- Dosya adı burada gösteriliyor -->
-
-                            <input type="file" hidden #fileInput (change)="onFileSelected($event)">
-                        </div>
-                        <button type="button" (click)="add()" class="btn btn-success me-2">Kaydet</button>
-                        <button type="button" class="btn btn-secondary">Vazgeç</button>
-                    </form>
+                <div class="field-group field-group-full">
+                    <label>Ürün görseli</label>
+                    <div class="file-picker-row">
+                        <button type="button" class="btn btn-secondary" (click)="fileInput.click()">Görsel Seç</button>
+                        <span class="file-name" *ngIf="selectedFile">{{ selectedFile.name }}</span>
+                    </div>
+                    <input type="file" hidden #fileInput (change)="onFileSelected($event)">
                 </div>
             </div>
 
-        </div>
-
-    </div>
+            <div class="form-btn-group">
+                <button type="button" (click)="add()" class="btn btn-primary">Kaydet</button>
+                <button type="button" class="btn btn-secondary" (click)="productAddForm.reset()">Temizle</button>
+            </div>
+        </form>
+    </section>
 </div>

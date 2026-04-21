@@ -1,19 +1,27 @@
-<!-- Sağda veya üstte ekleme formu -->
-<div class="card mb-3">
-  <div class="card-header bg-success text-white">
-    Yeni Kategori Ekle
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <h2 class="admin-page-title">Yeni Kategori</h2>
+      <p class="admin-page-subtitle">Menüde görünecek kategori yapısını buradan ekleyin.</p>
+    </div>
   </div>
-  <div class="card-body">
-    <form [formGroup]="categoryAddForm">
-      <div class="mb-3">
-        <label class="form-label">Kategori Adı</label>
-        <input type="text" class="form-control" formControlName="categoryName" placeholder="Kategori adı girin" />
+
+  <section class="admin-panel admin-form-panel">
+    <div class="panel-head">
+      <span class="panel-kicker">Kategori Ekle</span>
+      <h3>Kategori bilgileri</h3>
+    </div>
+
+    <form [formGroup]="categoryAddForm" class="admin-form">
+      <div class="field-group">
+        <label for="categoryName">Kategori adı</label>
+        <input id="categoryName" type="text" class="form-control" formControlName="categoryName" placeholder="Örn. Ana Yemekler" />
       </div>
 
       <div class="form-btn-group">
-        <button type="button" class="btn btn-success me-2" (click)="addCategory()">Kaydet</button>
+        <button type="button" class="btn btn-primary" (click)="addCategory()">Kaydet</button>
         <button type="button" class="btn btn-secondary" (click)="categoryAddForm.reset()">Temizle</button>
       </div>
     </form>
-  </div>
+  </section>
 </div>

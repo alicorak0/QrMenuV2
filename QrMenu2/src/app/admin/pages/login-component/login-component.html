@@ -1,8 +1,11 @@
 <div class="login">
    <img src="/adminloginbackground.jpg.jpeg" alt="login image" class="login__img">
+   <div class="login__overlay"></div>
 
    <form [formGroup]="loginForm" action="" class="login__form">
-      <h1 class="login__title">Login</h1>
+      <div class="login__eyebrow">Quattro Admin</div>
+      <h1 class="login__title">Yönetici Girişi</h1>
+      <p class="login__subtitle">Menü, kategori ve ürün yönetimini tek panelden kontrol edin.</p>
 
       <div class="login__content">
          <div class="login__box">
@@ -10,7 +13,7 @@
           <div class="login__box-input">
                <input type="email" formControlName="email" type="email" required class="login__input" id="login-email"
                   placeholder=" ">
-               <label for="login-email" class="login__label">Email</label>
+               <label for="login-email" class="login__label">E-posta</label>
             </div>
          </div>
 
@@ -19,7 +22,7 @@
 
             <div class="login__box-input">
                <input type="password" formControlName="password" required class="login__input" id="login-pass" placeholder=" ">
-               <label for="login-pass" class="login__label">Password</label>
+               <label for="login-pass" class="login__label">Şifre</label>
                <i class="ri-eye-off-line login__eye" id="login-eye"></i>
             </div>
          </div>
@@ -28,13 +31,13 @@
       <div class="login__check">
          <div class="login__check-group">
             <input type="checkbox" class="login__check-input" id="login-check">
-            <label for="login-check" class="login__check-label">Remember me</label>
+            <label for="login-check" class="login__check-label">Beni hatırla</label>
          </div>
 
-         <a class="login__forgot">Forgot Password?</a>
+         <a class="login__forgot">Şifremi unuttum</a>
       </div>
 
-      <button type="submit" (click)="login()" class="login__button">Login</button>
+      <button type="submit" (click)="login()" class="login__button">Giriş Yap</button>
 
       <!-- <p class="login__register">
                   Don't have an account? <a href="#">Register</a>

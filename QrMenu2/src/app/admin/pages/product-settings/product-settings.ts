@@ -22,8 +22,14 @@ import { CategoryService } from '../../../services/category-service';
 export class ProductSettings implements OnInit {
  products: Product[] = [];          // Bu componentin kendi ürünler listesi
 selectedProduct: Product | null = null;
+private railTouchStartX = 0;
+private railTouchStartY = 0;
+private railStartScrollLeft = 0;
+private isRailTouchDragging = false;
+private isHorizontalRailSwipe = false;
 
 @ViewChild('fileInput') fileInput!: ElementRef;
+@ViewChild('productsRail') productsRail?: ElementRef<HTMLDivElement>;
 
 
 selectedFile: File | null = null; // ürün ekleme 
@@ -65,6 +71,77 @@ constructor(private productService: ProductService,private toastrService: Toastr
 
 selectedCategoryId: number | null = null; // Ürünleri güncellemek için seçilen kategorinin ID'si
 filteredCategoryId: number | null = null; // Dropdown'da seçilen kategorinin ID'si
+
+getCategoryName(categoryId: number): string {
+  return this.allCategories.find(category => category.categoryId === categoryId)?.categoryName || `Kategori #${categoryId}`;
+}
+
+getProductImageUrl(imageName: string | null | undefined): string {
+  return imageName
+    ? `https://localhost:44311/uploads/products/${imageName}`
+    : 'https://localhost:44311/uploads/products/Quattro-logo.png';
+}
+
+scrollProducts(direction: 'left' | 'right') {
+  const rail = this.productsRail?.nativeElement;
+
+  if (!rail) {
+    return;
+  }
+
+  const scrollAmount = Math.max(rail.clientWidth * 0.78, 260);
+
+  rail.scrollBy({
+    left: direction === 'right' ? scrollAmount : -scrollAmount,
+    behavior: 'smooth',
+  });
+}
+
+onRailTouchStart(event: TouchEvent) {
+  const rail = this.productsRail?.nativeElement;
+  const touch = event.touches[0];
+
+  if (!rail || !touch) {
+    return;
+  }
+
+  this.railTouchStartX = touch.clientX;
+  this.railTouchStartY = touch.clientY;
+  this.railStartScrollLeft = rail.scrollLeft;
+  this.isRailTouchDragging = true;
+  this.isHorizontalRailSwipe = false;
+}
+
+onRailTouchMove(event: TouchEvent) {
+  const rail = this.productsRail?.nativeElement;
+  const touch = event.touches[0];
+
+  if (!rail || !touch || !this.isRailTouchDragging) {
+    return;
+  }
+
+  const deltaX = touch.clientX - this.railTouchStartX;
+  const deltaY = touch.clientY - this.railTouchStartY;
+
+  if (!this.isHorizontalRailSwipe) {
+    if (Math.abs(deltaX) <= Math.abs(deltaY)) {
+      return;
+    }
+
+    this.isHorizontalRailSwipe = true;
+  }
+
+  if (event.cancelable) {
+    event.preventDefault();
+  }
+
+  rail.scrollLeft = this.railStartScrollLeft - deltaX;
+}
+
+onRailTouchEnd() {
+  this.isRailTouchDragging = false;
+  this.isHorizontalRailSwipe = false;
+}
 
 
 

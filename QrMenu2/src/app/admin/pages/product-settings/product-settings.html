@@ -1,137 +1,151 @@
-<div class="container mt-4">
-    <h2 class="content-title">Product Management</h2>
-
-    <div class="flex-row">
-        <!-- Solda tablo -->
-        <div class="flex-col flex-col-left">
-            <div class="card">
-                <div class="card-header bg-primary text-white">Ürünler</div>
-                <div class="card-body p-0">
-                    <div class="table-wrapper">
-                        <table class="table table-striped mb-0">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>İd</th>
-                                    <th>Category</th>
-                                    <th>ProductName</th>
-                                    <th>Description</th>
-                                    <th>Tooltip</th>
-                                    <th>Price</th>
-                                    <th>Image</th>
-                                    <th>Favori</th>
-                                    <th>İşlem</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let product of products">
-                                    <td>{{product.productId}}</td>
-                                    <td>{{product.categoryId}}</td>
-                                    <td>{{product.productName}}</td>
-                                    <td class="layout-cell">{{product.description}}</td>
-                                    <td class="layout-cell">{{product.tooltip}}</td>
-                                    <td>{{product.price}}</td>
-                                    <td class="layout-cell">{{product.image}}</td>
-                                    <td class="layout-cell">{{product.isFeatured}}</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-warning me-1"
-                                            (click)="SelectProduct(product)">Güncelle</button>
-                                        <button class="btn btn-sm btn-danger"
-                                            (click)="DeleteProduct(product)">Sil</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+<div class="admin-page">
+    <div class="admin-page-header admin-page-header-split">
+        <div>
+            <h2 class="admin-page-title">Ürün Yönetimi</h2>
+            <p class="admin-page-subtitle">Ürünleri filtreleyin, güncelleyin ve görsellerini tek ekranda yönetin.</p>
         </div>
 
+        <div class="filter-box">
+            <label for="productFilter">Kategori filtresi</label>
+            <select id="productFilter" class="form-control" [(ngModel)]="filteredCategoryId" (change)="onCategoryChange()">
+                <option [ngValue]="null">Tümü</option>
+                <option *ngFor="let cat of allCategories" [ngValue]="cat.categoryId">
+                    {{ cat.categoryName }}
+                </option>
+            </select>
+        </div>
+    </div>
 
+    <div class="admin-grid">
+        <section class="admin-panel admin-table-panel">
+            <div class="panel-head">
+                <div>
+                    <span class="panel-kicker">Ürünler</span>
+                    <h3>Ürün listesi</h3>
+                </div>
 
-   <!-- SEÇİM -->
- <select [(ngModel)]="filteredCategoryId" (change)="onCategoryChange()">
+                <div class="swiper-controls" *ngIf="products.length > 0">
+                    <button type="button" class="swiper-nav-btn" (click)="scrollProducts('left')" aria-label="Önceki ürünler">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button type="button" class="swiper-nav-btn" (click)="scrollProducts('right')" aria-label="Sonraki ürünler">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
 
-  <!-- TÜMÜ -->
-  <option [ngValue]="null">Tümü</option>
-
-  <!-- KATEGORİLER -->
-  <option *ngFor="let cat of allCategories" [ngValue]="cat.categoryId">
-    {{ cat.categoryName }}
-  </option>
-
-</select>
-
-
-
-
-
-
-
-
-
-        <!-- Sağda form -->
-        <div class="flex-col flex-col-right">
-            <div class="card">
-                <div class="card-header bg-success text-white">Seçilen Ürünü Güncelle</div>
-                <div class="card-body">
-                    <form [formGroup]="productUpdateForm">
-                        <div class="mb-3">
-                            <label class="form-label">ID</label>
-                            <input type="number" class="form-control" readonly formControlName="productId" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-control" formControlName="productName" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Category</label>
-                            <select class="form-control" [(ngModel)]="selectedCategoryId" name="category"
-                                formControlName="categoryId">
-                                <option [ngValue]="null" value="0" disabled>Seçiniz</option>
-                                <option *ngFor="let cat of allCategories" [ngValue]="cat.categoryId">{{cat.categoryName}}</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Description</label>
-                            <input type="text" class="form-control" formControlName="description" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Tooltip</label>
-                            <input type="text" class="form-control" formControlName="tooltip" />
+            <div class="products-swiper-shell" *ngIf="products.length > 0; else emptyProductsState">
+                <div class="products-swiper-track" #productsRail
+                    (touchstart)="onRailTouchStart($event)"
+                    (touchmove)="onRailTouchMove($event)"
+                    (touchend)="onRailTouchEnd()"
+                    (touchcancel)="onRailTouchEnd()">
+                    <article class="product-slide-card" *ngFor="let product of products">
+                        <div class="product-slide-media">
+                            <img [src]="getProductImageUrl(product.image)" [alt]="product.productName">
+                            <span class="product-slide-id">#{{ product.productId }}</span>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Favori Ürün</label>
-                            <select class="form-control"  
-                                formControlName="isFeatured">
-                                                                <option [ngValue]="null" value="0" disabled>Seçiniz</option>
+                        <div class="product-slide-body">
+                            <div class="product-slide-top">
+                                <span class="product-slide-category">{{ getCategoryName(product.categoryId) }}</span>
+                                <span class="featured-badge" [class.featured-badge-active]="product.isFeatured">
+                                    {{ product.isFeatured ? 'Favori' : 'Standart' }}
+                                </span>
+                            </div>
 
-                                <option [ngValue]="false">Hayır</option>
-                                <option [ngValue]="true">Evet</option>
-                            </select>
-                        </div>
+                            <h4>{{ product.productName }}</h4>
+                            <p class="product-slide-description">{{ product.description }}</p>
 
+                            <div class="product-slide-meta">
+                                <div class="meta-chip" *ngIf="product.tooltip">
+                                    <span>Tooltip</span>
+                                    <strong>{{ product.tooltip }}</strong>
+                                </div>
+                                <div class="meta-chip">
+                                    <span>Fiyat</span>
+                                    <strong>₺{{ product.price }}</strong>
+                                </div>
+                            </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Price</label>
-                            <input type="number" class="form-control" formControlName="price" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">İmage</label>
-                            <input type="file" class="form-control" #fileInput (change)="onFileSelected($event)">
-                            <div class="mt-2">
-                                <!-- Küçük preview, 60x60px -->
-                                <img *ngIf="previewUrl" [src]="previewUrl" alt="Preview" width="60" height="60"
-                                    style="object-fit: cover; border: 1px solid #ccc; border-radius: 4px;">
+                            <div class="actions-cell product-slide-actions">
+                                <button type="button" class="btn btn-warning" (click)="SelectProduct(product)">Güncelle</button>
+                                <button type="button" class="btn btn-danger" (click)="DeleteProduct(product)">Sil</button>
                             </div>
                         </div>
-
-
-                        <button type="button" class="btn btn-success me-2" (click)="updateProduct()">Kaydet</button>
-                        <button type="button" class="btn btn-secondary" (click)="cancelSelect()">Vazgeç</button>
-                    </form>
+                    </article>
                 </div>
             </div>
-        </div>
+
+            <ng-template #emptyProductsState>
+                <div class="empty-state">
+                    Seçilen filtre için gösterilecek ürün bulunamadı.
+                </div>
+            </ng-template>
+        </section>
+
+        <section class="admin-panel admin-form-panel">
+            <div class="panel-head">
+                <span class="panel-kicker">Düzenleme</span>
+                <h3>Seçili ürünü güncelle</h3>
+            </div>
+
+            <form [formGroup]="productUpdateForm" class="admin-form">
+                <div class="field-group">
+                    <label for="productIdUpdate">ID</label>
+                    <input id="productIdUpdate" type="number" class="form-control" readonly formControlName="productId" />
+                </div>
+
+                <div class="field-group">
+                    <label for="productNameUpdate">Ürün adı</label>
+                    <input id="productNameUpdate" type="text" class="form-control" formControlName="productName" />
+                </div>
+
+                <div class="field-group">
+                    <label for="productCategoryUpdate">Kategori</label>
+                    <select id="productCategoryUpdate" class="form-control" [(ngModel)]="selectedCategoryId" name="category" formControlName="categoryId">
+                        <option [ngValue]="null" value="0" disabled>Seçiniz</option>
+                        <option *ngFor="let cat of allCategories" [ngValue]="cat.categoryId">{{cat.categoryName}}</option>
+                    </select>
+                </div>
+
+                <div class="field-group">
+                    <label for="productDescriptionUpdate">Açıklama</label>
+                    <input id="productDescriptionUpdate" type="text" class="form-control" formControlName="description" />
+                </div>
+
+                <div class="field-group">
+                    <label for="productTooltipUpdate">Tooltip</label>
+                    <input id="productTooltipUpdate" type="text" class="form-control" formControlName="tooltip" />
+                </div>
+
+                <div class="field-group">
+                    <label for="featuredUpdate">Favori ürün</label>
+                    <select id="featuredUpdate" class="form-control" formControlName="isFeatured">
+                        <option [ngValue]="null" value="0" disabled>Seçiniz</option>
+                        <option [ngValue]="false">Hayır</option>
+                        <option [ngValue]="true">Evet</option>
+                    </select>
+                </div>
+
+                <div class="field-group">
+                    <label for="priceUpdate">Fiyat</label>
+                    <input id="priceUpdate" type="number" class="form-control" formControlName="price" />
+                </div>
+
+                <div class="field-group">
+                    <label for="imageUpdate">Görsel</label>
+                    <input id="imageUpdate" type="file" class="form-control" #fileInput (change)="onFileSelected($event)">
+                    <div class="image-preview" *ngIf="previewUrl">
+                        <img [src]="previewUrl" alt="Preview">
+                    </div>
+                </div>
+
+                <div class="form-btn-group">
+                    <button type="button" class="btn btn-primary" (click)="updateProduct()">Kaydet</button>
+                    <button type="button" class="btn btn-secondary" (click)="cancelSelect()">Vazgeç</button>
+                </div>
+            </form>
+        </section>
     </div>
 </div>
